@@ -2,8 +2,8 @@
 
  ###  Creadores
 
-- Carolina florez Salazar 
-- Samuel Parra Marin 
+- Carolina Flórez Salazar 
+- Samuel Parra Marín 
   
  La entrevista y la tabla de ecxel se encuentran en la carpeta llamada "Entrega 1"
 
