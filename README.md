@@ -5,7 +5,7 @@
 - Carolina Flórez Salazar 
 - Samuel Parra Marín 
   
- La entrevista y la tabla de ecxel se encuentran en la carpeta llamada "Entrega 1"
+ La entrevista y la tabla de excel se encuentran en la carpeta llamada "Entrega 1"
 
   ### Persona entrevistada
 - **Nombre:** Magnolia Salazar Agudelo 
