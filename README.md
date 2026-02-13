@@ -1,4 +1,4 @@
-# Calculadora-de-Impuestos-Declaracion-de-renta- 
+# Calculadora de Impuestos Declaracion de renta 
 
  ###  Creadores
 
