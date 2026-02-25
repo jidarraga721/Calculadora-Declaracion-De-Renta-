@@ -70,50 +70,42 @@ class Test_calculadora(unittest.TestCase):
         self.assertEqual(Limite_legal, 1288000)
         self.assertEqual(Total, 2415000)
 
-    def test_error1(self):
-        ingreso_bruto = -5000000
+    def test_ingresoNegativo(self):
+        ingreso_bruto = -50000000
         aportes_ley = 400000
         deducciones = 0
     
-        with self.assertRaises(Exception):
+        with self.assertRaises(Logica_calculadora.ingreso_invalido):
             Logica_calculadora.cal_entradas(ingreso_bruto, aportes_ley, deducciones)
 
-    def test_error2(self):
+    def test_AporteIlogico(self):
         ingreso_bruto = 1000000
         aportes_ley = 1500000
         deducciones = 0
     
-        with self.assertRaises(Exception):
+        with self.assertRaises(Logica_calculadora.Aportes_fuera_rango):
             Logica_calculadora.cal_entradas(ingreso_bruto, aportes_ley, deducciones)
 
-    def test_error3(self):
+    def test_ingreso_0(self):
         ingreso_bruto = 0
-        aportes_ley = 4000000
-        deducciones = 250000
+        aportes_ley = 0
+        deducciones = 0
     
-        with self.assertRaises(Exception):
+        with self.assertRaises(Logica_calculadora.ingreso_0):
             Logica_calculadora.cal_entradas(ingreso_bruto, aportes_ley, deducciones)
 
-    def test_error4(self):
+    def test_DeduccionesMayores(self):
         ingreso_bruto = 2000000
         aportes_ley = 160000
         deducciones = 50000000
     
-        with self.assertRaises(Exception):
+        with self.assertRaises(Logica_calculadora.Deduccion_fuera_rango):
             Logica_calculadora.cal_entradas(ingreso_bruto, aportes_ley, deducciones)
     
-    def test_error5(self):
-        ingreso_bruto = 20000000
+    def test_Aportesoblogatorios(self):
+        ingreso_bruto = 1
         aportes_ley = 0
-        deducciones = 800000
+        deducciones = 0
     
-        with self.assertRaises(Exception):
+        with self.assertRaises(Logica_calculadora.Aportes_obligatorios):
             Logica_calculadora.cal_entradas(ingreso_bruto, aportes_ley, deducciones) 
-
-
-        
-
-    
-  
-if __name__ == '__main__':
-    unittest.main()
