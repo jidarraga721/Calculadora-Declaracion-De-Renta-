@@ -61,7 +61,7 @@ class Test_calculadora(unittest.TestCase):
     
     def test_extra3(self): 
         ingreso_bruto = 3500000
-        aportes_ley = 280000
+        aportes_ley = 3030000
         deducciones = 0
 
         Renta_liquida, Beneficio_real, Limite_legal, Total = Logica_calculadora.cal_entradas(ingreso_bruto, aportes_ley, deducciones)
@@ -103,12 +103,9 @@ class Test_calculadora(unittest.TestCase):
             Logica_calculadora.cal_entradas(ingreso_bruto, aportes_ley, deducciones)
 
     def test_Aportesoblogatorios(self):
-        ingreso_bruto = 1
+        ingreso_bruto = 4000000
         aportes_ley = 0
         deducciones = 0
     
         with self.assertRaises(Logica_calculadora.Aportes_obligatorios):
             Logica_calculadora.cal_entradas(ingreso_bruto, aportes_ley, deducciones) 
-
-
-
