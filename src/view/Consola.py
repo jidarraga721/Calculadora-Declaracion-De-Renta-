@@ -6,9 +6,9 @@ try:
     print("Este progrma permite caluclar la declaracion de renta")
 
     # Captura de datos de entrada desde la consola
-    ingreso_bruto= int(input("Ingrese sus ingresos   "))
-    aportes_ley= int(input("Ingrese sus aportes   "))
-    deducciones= int(input("Ingrese sus deducciones   "))
+    ingreso_bruto= int(input("Ingrese sus ingresos: "))
+    aportes_ley= int(input("Ingrese sus aportes: "))
+    deducciones= int(input("Ingrese sus deducciones: "))
 
     # Llamado a la lógica de cálculo (Se obtiene la tupla completa en una sola ejecución)
     renta_liquida, beneficio_real, limite_legal , total = Logica_calculadora.cal_entradas(ingreso_bruto, aportes_ley, deducciones)
