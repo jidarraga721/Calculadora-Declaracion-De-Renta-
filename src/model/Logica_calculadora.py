@@ -1,58 +1,84 @@
-class IngresoInvalido(Exception):
-    pass
-"""Se dispara cuando el ingreso es cero o negativo."""
+class IngresoInvalido( Exception ): 
+    """ Se dispara cuando el ingreso es negativo """
+    def __init__( self):
+    # Llama al constructor de la excepción con el mensaje de error específico
+        super().__init__( f"El valor del ingreso bruto debe ser mayor que cero" )
 
-class AportesInvalidos(Exception):
-    pass
-"""Se dispara cuando los aportes de ley superan los ingresos."""
+class AportesInvalidos( Exception ): 
+    """ Se dispara cuando los aportes de ley superan los ingresos """
+    def __init__( self ):
+    # Llama al constructor para indicar inconsistencia entre aportes e ingresos
+        super().__init__( f"Los aportes de ley no pueden ser mayores al ingreso bruto" )
 
-class IngresoCero(Exception):
-    pass
-"""Se dispara cuando las deducciones superan la renta líquida."""
+class IngresoCero( Exception ): 
+    """ Se dispara cuando el ingreso es cero """
+    def __init__( self ):
+    # Llama al constructor para informar que se requieren ingresos para el cálculo
+        super().__init__( f"El usuario debe de tener ingresos" )
 
-class DeduccionFueraRango(Exception):
-    pass
-"""Se dispara si un asalariado con ingresos no registra aportes de ley."""
+class DeduccionFueraRango( Exception ): 
+    """ Se dispara si las deducciones superan la renta liquida """
+    def __init__( self ):
+    # Llama al constructor para indicar que las deducciones exceden el límite permitido    
+        super().__init__( f"Las deducciones estan fuera de rango" )
 
-class AportesObligatorios(Exception):
-    pass
-"""Se dispara si un asalariado con ingresos no registra aportes de ley."""
+class AportesObligatorios( Exception ): 
+    """ Se dispara si no hay aportes siendo asalariado """
+    def __init__( self ):
+    # Llama al constructor para exigir los aportes obligatorios de salud y pensión
+        super().__init__( f"Aportes de ley obligatorios faltantes, todo asalariado debe aportar a salud y pension" )
 
+class Impuestos():
+    """ Representa los datos de entrada para el cálculo (Como la clase Purchase) """
+    ingreso_bruto : float
+    aportes_ley : float
+    deducciones : float
 
-def cal_entradas(ingreso_bruto, aportes_ley,deducciones):
-    """
-    Esta función valida los montos de entrada y aplica la lógica de beneficios 
-    tributarios, considerando el límite legal del 40% sobre la renta líquida.
-    Ingreso_bruto: ingreso total que gana el usuario
-    Aportes_ley: Descuentos obligatorios exigidos por el estado
-    Deducciones: Gastos especificos que el usuario ya tiene o inversiones que hace para reducir legalmente la base de sus impuestos 
-    """
+    def __init__(self, ingreso_bruto, aportes_ley, deducciones):
+        self.ingreso_bruto = ingreso_bruto
+        self.aportes_ley = aportes_ley
+        self.deducciones = deducciones
 
-    if ingreso_bruto < 0:
-        raise IngresoInvalido("El valor del ingreso bruto debe ser mayor que cero")
+class CalculadoraImpuestos:
+    """ Clase para realizar operaciones financieras de impuestos """
+
+    def calcular_entradas( impuestos : Impuestos ):
+        """ Calcula la renta liquida, beneficio real, limite legal y total """
+
+        CalculadoraImpuestos.comprobar_ingreso(impuestos.ingreso_bruto)
+        CalculadoraImpuestos.comprobar_aportes(impuestos.aportes_ley, impuestos.ingreso_bruto)
+        CalculadoraImpuestos.comprobar_obligaciones(impuestos.ingreso_bruto, impuestos.aportes_ley)
+
+        # Lógica de cálculo
+        renta_liquida = impuestos.ingreso_bruto - impuestos.aportes_ley
+
+        # Validación de deducciones después de calcular renta_liquida
+        CalculadoraImpuestos.comprobar_deducciones(impuestos.deducciones, renta_liquida)
+
+        beneficio_real = impuestos.deducciones + ((renta_liquida - impuestos.deducciones) * 0.25)
+        limite_legal = renta_liquida * 0.40
+
+        if beneficio_real > limite_legal:
+            total = renta_liquida - limite_legal
+        else:
+            total = renta_liquida - beneficio_real
+
+        return renta_liquida, beneficio_real, limite_legal, total
     
-    if aportes_ley > ingreso_bruto:
-        raise AportesInvalidos("Los aportes de ley no pueden ser mayores al ingreso bruto")
-    
-    if ingreso_bruto == 0:
-        raise IngresoCero("El usuario debe de tener ingresos")
-    
-    if deducciones > (ingreso_bruto-aportes_ley):
-        raise DeduccionFueraRango("Las deducciones estan fuera de rango")
-    
-    if ingreso_bruto > 0 and aportes_ley == 0:
-        raise AportesObligatorios("Aportes de ley obligatorios faltantes, todo asalariado debe aportar a salud y pension ")
-    
+    def comprobar_ingreso(ingreso):
+        if ingreso < 0 :
+            raise IngresoInvalido()
+        if ingreso == 0 :
+            raise IngresoCero()
 
-    # Lógica de cálculo original
-    renta_liquida = ingreso_bruto - aportes_ley
-    beneficio_real = deducciones + ((renta_liquida- deducciones)*0.25)
-    limite_legal = renta_liquida *0.40
+    def comprobar_aportes(aportes, ingreso):
+        if aportes > ingreso :
+            raise AportesInvalidos()
 
-    if beneficio_real > limite_legal:
-        total = renta_liquida - limite_legal
-        
-    elif beneficio_real <= limite_legal:
-        total = renta_liquida - beneficio_real
+    def comprobar_obligaciones(ingreso, aportes):
+        if ingreso > 0 and aportes == 0 :
+            raise AportesObligatorios()
 
-    return renta_liquida, beneficio_real, limite_legal, total
+    def comprobar_deducciones(deducciones, renta_liquida):
+        if deducciones > renta_liquida :
+            raise DeduccionFueraRango()
