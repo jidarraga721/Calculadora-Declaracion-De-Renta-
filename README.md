@@ -90,7 +90,7 @@ Antes de comenzar, asegúrese de tener lo siguiente:
 
 - **Python 3.14.3** instalado en su computador. Si no lo tiene, descárguelo desde python.org.
   > En Windows, durante la instalación marque la casilla **"Add Python to PATH"**
-- La carpeta del proyecto descargada (`ej. Proyecto-Calculadora-Renta`)
+- La carpeta del proyecto descargada (`ej. Calculadora-Declaracion-De-Renta-`)
 
 ---
 ### Opción 1 — Desde la Terminal (CMD / Bash)
