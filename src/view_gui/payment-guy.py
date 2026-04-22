@@ -8,7 +8,7 @@ from kivy.uix.popup import Popup
 
 import sys
 sys.path.append("src")
-
+#Importacion arreglada
 from src.model.Logica_calculadora import Impuestos, CalculadoraImpuestos
 
 class RentaApp(App):
