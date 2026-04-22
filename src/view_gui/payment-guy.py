@@ -9,12 +9,13 @@ from kivy.uix.popup import Popup
 import sys
 sys.path.append("src")
 
-# 🔹 Tu lógica
-from model.Logica_calculadora import Impuestos, CalculadoraImpuestos
+from src.model.Logica_calculadora import Impuestos, CalculadoraImpuestos
 
 
 class RentaApp(App):
     def build(self):
+
+        self.title = "Calculadora del valor de la renta"
         contenedor = GridLayout(cols=2, padding=20, spacing=20)
 
         contenedor.add_widget(Label(text="Ingreso Bruto"))
