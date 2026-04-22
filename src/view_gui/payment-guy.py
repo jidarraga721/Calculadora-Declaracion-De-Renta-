@@ -11,7 +11,6 @@ sys.path.append("src")
 
 from src.model.Logica_calculadora import Impuestos, CalculadoraImpuestos
 
-
 class RentaApp(App):
     def build(self):
 
