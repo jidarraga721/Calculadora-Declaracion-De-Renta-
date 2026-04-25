@@ -13,9 +13,10 @@
 - **Especialización :** Administracion y Contabilidad 
 - **Fecha de la entrevista:** 07/02/2026
 ---
-Interfáz desarrollada por:
--Juan David Idarraga Porras 
--Alejandro Tello
+ ### Interfáz desarrollada por:
+ 
+- Juan David Idarraga Porras 
+- Alejandro Tello Giraldo
 
 ### Descripción del Proyecto
 La función de esta aplicación es transformar la compleja legislación en un proceso de cálculo preciso y fácil de entender para cualquier trabajador. Su objetivo es procesar el ingreso bruto de un empleado y aplicarle en orden jerárquico todos los beneficios y límites legales que permite la DIAN.
