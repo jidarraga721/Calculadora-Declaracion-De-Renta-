@@ -17,6 +17,7 @@
  
 - Juan David Idarraga Porras 
 - Alejandro Tello Giraldo
+- Kesman Posso Parra
 
 ### Descripción del Proyecto
 La función de esta aplicación es transformar la compleja legislación en un proceso de cálculo preciso y fácil de entender para cualquier trabajador. Su objetivo es procesar el ingreso bruto de un empleado y aplicarle en orden jerárquico todos los beneficios y límites legales que permite la DIAN.
